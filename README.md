@@ -1,2 +1,2 @@
 # Get_Current_loc
- Get Current location
+#Using Google Play services get your current location without opening Google Maps
