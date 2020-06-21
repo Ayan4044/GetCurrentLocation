@@ -44,17 +44,14 @@ public class MainActivity extends AppCompatActivity {
     Geocoder geocoder;
     List<Address> addressList;
     Button buttonaddress;
-    //List<Add>
     EditText editextloc;
     Double latitdue, longitude;
     private FusedLocationProviderClient fusedLocationClient;
-
     protected LocationManager locationManager;
     protected LocationListener locationListener;
     protected Context context;
     String lat;
     String provider;
-    //protected String latitude, longitude;
     protected boolean gps_enabled, network_enabled;
     int PLACE_PICKER_REQUEST = 1;
     private FusedLocationProviderClient client;
@@ -69,25 +66,11 @@ public class MainActivity extends AppCompatActivity {
         buttonlocation = (Button) findViewById(R.id.buttonlocation);
         editextloc = (EditText) findViewById(R.id.editextloc);
         buttonaddress = (Button) findViewById(R.id.buttonaddress);
-        //     MapUtility.apiKey = getResources().getString(R.string.api_key);
         geocoder = new Geocoder(this, Locale.getDefault());
         Check_Permmission();
-        ///code to hide the title bar in the tabbed acitivity
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        //getLastLocation();
-       /* locationManager=(LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);*/
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         buttonlocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,27 +113,6 @@ public class MainActivity extends AppCompatActivity {
         buttonaddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* try {
-                    addressList = geocoder.getFromLocation(latitdue, longitude, 1);
-                    String address = addressList.get(0).getAddressLine(0);
-                    String area = addressList.get(0).getLocality();
-                    String locality = addressList.get(0).getSubLocality();
-                    String countryname = addressList.get(0).getCountryName();
-                    String postalCode = addressList.get(0).getPostalCode();
-
-                    String address_details = address + " | " + area + " | " + locality + " | " + countryname + " | " + postalCode;
-                    editextloc.setText(address);
-                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText("Location", editextloc.getText().toString().trim());
-                    clipboard.setPrimaryClip(clip);
-                    Toast.makeText(getApplicationContext(), "Location Copied", Toast.LENGTH_SHORT).show();
-
-                } catch (IOException e) {
-
-                }*/
-
-
-
 
                         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                         ClipData clip = ClipData.newPlainText("Location", editextloc.getText().toString().trim());
@@ -199,29 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    /*
-        @Override
-        public void onLocationChanged(Location location) {
-            //txtLat = (TextView) findViewById(R.id.textview1);
-            settextviewloc=(TextView) findViewById(R.id.textViewSetloc);
 
-            settextviewloc.setText("Latitude:" + location.getLatitude() + ", Longitude:" + location.getLongitude());
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-            Log.d("Latitude","disable");
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-            Log.d("Latitude","enable");
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-            Log.d("Latitude","status");
-        }*/
     public void copy_address(View view) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Location", editextloc.getText().toString().trim());
